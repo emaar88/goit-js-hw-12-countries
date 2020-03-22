@@ -6,8 +6,8 @@ import moreCountriesTemplates from './templates/moreCountries.hbs';
 import PNotify from '../node_modules/pnotify/dist/es/PNotify.js';
 
 const inputCountry = document.querySelector('#input_country');
-const listOfCountries = document.querySelector('#list-of-countries');
-const oneCountry = document.querySelector('#one-country');
+// const listOfCountries = document.querySelector('#list-of-countries');
+const root = document.querySelector('#root');
 
 inputCountry.addEventListener('input', debounce(findCountry, 500));
 
@@ -16,19 +16,16 @@ function findCountry(e) {
   fetchFindCountries(input);
 }
 
-function clearContent() {
-  listOfCountries.innerHTML = '';
-  oneCountry.innerHTML = '';
-}
 function renderListCountries(countries) {
-  console.log(countries.name);
   const markup = moreCountriesTemplates(countries);
-  listOfCountries.insertAdjacentHTML('beforeend', markup);
+  root.classList.add('column');
+  root.insertAdjacentHTML('beforeend', markup);
 }
 
 function renderOneCountry(country) {
   const markup = oneCountryTemplate(country);
-  oneCountry.insertAdjacentHTML('beforeend', markup);
+  root.classList.remove('column');
+  root.insertAdjacentHTML('beforeend', markup);
 }
 
 function renderforRequestCountries(countryNames) {
@@ -52,7 +49,7 @@ function renderforRequestCountries(countryNames) {
 }
 
 function fetchFindCountries(nameOfCountry) {
-  clearContent();
+  root.innerHTML = '';
   if (nameOfCountry === '') {
     return;
   }

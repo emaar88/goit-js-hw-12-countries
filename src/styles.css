@@ -71,3 +71,7 @@ ul > li {
   max-width: 50%;
   margin: auto;
 }
+
+.column {
+  flex-direction: column;
+}
