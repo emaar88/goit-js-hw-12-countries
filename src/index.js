@@ -6,7 +6,6 @@ import moreCountriesTemplates from './templates/moreCountries.hbs';
 import PNotify from '../node_modules/pnotify/dist/es/PNotify.js';
 
 const inputCountry = document.querySelector('#input_country');
-// const listOfCountries = document.querySelector('#list-of-countries');
 const root = document.querySelector('#root');
 
 inputCountry.addEventListener('input', debounce(findCountry, 500));
