@@ -8,7 +8,7 @@ import PNotify from '../node_modules/pnotify/dist/es/PNotify.js';
 const inputCountry = document.querySelector('#input_country');
 const root = document.querySelector('#root');
 
-inputCountry.addEventListener('input', debounce(findCountry, 1500));
+inputCountry.addEventListener('input', debounce(findCountry, 1800));
 
 function findCountry(e) {
   const input = e.target.value;
