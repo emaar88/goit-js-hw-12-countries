@@ -57,6 +57,9 @@ img {
 .one_country {
   margin: auto;
 }
+h3 {
+  font-size: 36px;
+}
 p {
   font-size: 30px;
 }
