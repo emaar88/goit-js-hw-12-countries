@@ -30,29 +30,33 @@ function renderOneCountry(country) {
 function renderforRequestCountries(countryNames) {
   if (countryNames.length === 1) {
     renderOneCountry(countryNames);
-  } else if (countryNames.length >= 2 && countryNames.length <= 10) {
+    return;
+  }
+  if (countryNames.length >= 2 && countryNames.length <= 10) {
     renderListCountries(countryNames);
-  } else if (countryNames.length > 10) {
+    return;
+  }
+  if (countryNames.length > 10) {
     PNotify.info({
       text: 'Совпадений больше 10, введите более уникальный запрос',
       delay: 3000,
       icon: true,
     });
-  } else {
-    PNotify.info({
-      text: 'Совпадений не найдено. Введите правильный запрос',
-      delay: 3000,
-      icon: true,
-    });
+    return;
   }
+
+  PNotify.info({
+    text: 'Совпадений не найдено. Введите правильный запрос',
+    delay: 3000,
+    icon: true,
+  });
 }
 
 function fetchFindCountries(nameOfCountry) {
   root.innerHTML = '';
-  if (nameOfCountry === '') {
-    return;
+  if (nameOfCountry !== '') {
+    fetchCountries(nameOfCountry)
+      .then(nameOfCountry => renderforRequestCountries(nameOfCountry))
+      .catch(error => console.warn(error));
   }
-  fetchCountries(nameOfCountry)
-    .then(nameOfCountry => renderforRequestCountries(nameOfCountry))
-    .catch(error => console.warn(error));
 }
